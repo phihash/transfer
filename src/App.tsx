@@ -30,9 +30,11 @@ export function TaskCard({ tasks }: TaskCardProps) {
     <>
       {tasks.map((task) => {
         return (
-          <div key={task.id} className="bg-red-800">
-            <h2> {task.name}</h2>
-            {task.isDone ? <>✅</> : <>▫️</>}
+          <div key={task.id} className="bg-gray-100">
+            <div className="flex">
+              <h2> {task.name}</h2>
+              {task.isDone ? <>✅</> : <>▫️</>}
+            </div>
           </div>
         );
       })}
