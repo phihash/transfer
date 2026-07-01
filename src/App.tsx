@@ -1,36 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import "./App.css";
+import type { Task } from "./type";
 
-function App() {
-  const [count, setCount] = useState(0)
+type TaskCardProps = {
+  tasks: Task[];
+};
 
+const sampleTasks: Task[] = [
+  {
+    id: 1,
+    name: "業者予約",
+    isDone: false,
+  },
+  {
+    id: 2,
+    name: "不用品処分",
+    isDone: false,
+  },
+  {
+    id: 3,
+    name: "不用品処分",
+    isDone: false,
+  },
+];
+
+export function TaskCard({ tasks }: TaskCardProps) {
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      {tasks.map((task) => {
+        return (
+          <div key={task.id} className="bg-red-800">
+            <h2> {task.name}</h2>
+            {task.isDone ? <>✅</> : <>▫️</>}
+          </div>
+        );
+      })}
+    </>
+  );
+}
 
-      <div className="ticks"></div>
+function App() {
+  return (
+    <>
+      <TaskCard tasks={sampleTasks} />
 
       <section id="next-steps">
         <div id="docs">
@@ -116,7 +129,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
